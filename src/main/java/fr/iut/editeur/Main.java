@@ -21,6 +21,7 @@ public class Main {
             if(commande != null) {
                 invoker.executer(commande);
             }
+            
             else {
                 System.err.println("Cette commande n'existe pas!");
             }
