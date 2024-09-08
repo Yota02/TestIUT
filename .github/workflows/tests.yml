@@ -1,0 +1,40 @@
+name : Test
+
+on:
+  push:
+    branches:
+      - '*'
+      
+permissions :
+    contents: write
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest 
+    steps: 
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: installerJava
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'oracle'
+      - name: testlancement
+        run: mvn test
+  job2:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: installerJava
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: 'oracle'
+      - name: javadoc
+        run: mvn javadoc::javadoc
+      - name: publier
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/reports/apidocs/
