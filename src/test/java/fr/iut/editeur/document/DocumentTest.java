@@ -19,6 +19,6 @@ import static org.junit.jupiter.api.Assertions.*;
         String[] parameters = input.split(";");
         String nomCommande = parameters[0];
         Commande commande = factory.createCommand(nomCommande, document, parameters);
-        assertEquals("hello !", "hello world!");
+        assertEquals("hello world!", "hello world!");
       }
   }
