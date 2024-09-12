@@ -1,41 +1,28 @@
-name : documentation
+name : tests_unitaires
 
 on:
   push:
     branches:
       - 'main'
-      
-permissions :
-    contents: write
+
+permissions:
+  contents: write
 
 jobs:
-  job1:
-    runs-on: ubuntu-latest 
-    steps: 
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: installerJava
-        uses: actions/setup-java@v4
-        with:
-          java-version: 17
-          distribution: 'oracle'
-      - name: testlancement
-        run: mvn test
-  job2:
-    runs-on: ubuntu-latest 
+  jobs1:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Deplacer dans depot
         uses: actions/checkout@v4
-      - name: installerJava
+      - name: Mettre en place Java
         uses: actions/setup-java@v4
         with:
           java-version: 17
           distribution: 'oracle'
-      - name: javadoc
+      - name: Generer le site de la jdoc
         run: mvn javadoc::javadoc
-      - name: publier
+      - name: Publier contenu du site sur branche derivee
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./target/reports/apidocs/
-  
+          publish_dir: ./target/reports/apicodcs/
