@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
         Document document = new Document();
         CommandeInvoker invoker = CommandeInvoker.getInstance();
         CommandeFactory factory = CommandeFactory.getInstance();
-        String input = "ajouter;hello world!";
+        String input = "ajouter; hello world!";
         String[] parameters = input.split(";");
         String nomCommande = parameters[0];
         Commande commande = factory.createCommand(nomCommande, document, parameters);
