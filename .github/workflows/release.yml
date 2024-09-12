@@ -21,11 +21,14 @@ jobs:
           java-version: 17
           distribution: 'oracle'
       
-      - name: Build with Maven
+      - name: Build avec bon nom
+        run: mvn versions:set -DnewVersion=${{ github.ref_name }} -DgenerateBackupPoms=false
+
+      - name: Build 
         run: mvn package
       
       - name: Create Release
         uses: softprops/action-gh-release@v2
-        
+
         with:
-          files: target/EditeurDeTexte-0.0.1.jar
+          files: target/EditeurDeTexte-${{ github.ref_name }}.jar
